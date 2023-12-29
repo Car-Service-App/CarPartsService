@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet author="ZmaevDA" id="1698581124717-1">
+        <createTable tableName="car_part_category">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="car_part_category_pkey"/>
+            </column>
+            <column name="category_name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="image" type="BLOB">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="1693584127717-2">
+        <createTable tableName="car_part_type">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="car_part_type_pkey"/>
+            </column>
+            <column name="car_part_category_id" type="BIGINT">
+                <constraints unique="false" nullable="false"/>
+            </column>
+            <column name="car_part_name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="1798581124717-3">
+        <createTable tableName="car_part">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="car_part_pkey"/>
+            </column>
+            <column name="car_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="manufacturer_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="car_part_type_id" type="BIGINT">
+                <constraints unique="false" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="oem" type="VARCHAR(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="last_price" type="DECIMAL">
+                <constraints nullable="true" unique="false"/>
+            </column>
+            <column name="description" type="VARCHAR">
+                <constraints unique="false" nullable="true"/>
+            </column>
+            <column name="image" type="BLOB">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="1999581154457-4">
+        <createTable tableName="car_part_analog">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="car_part_analog_pkey"/>
+            </column>
+            <column name="car_part_id" type="BIGINT">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="oem" type="VARCHAR(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="image" type="BLOB">
+                <constraints nullable="false" unique="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="1698581134717-5">
+        <addForeignKeyConstraint baseColumnNames="car_part_category_id" baseTableName="car_part_type"
+                                 constraintName="gt551losx9j76655d6bfsqvi213" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="car_part_category" validate="true"/>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="10698581124717-6">
+        <addForeignKeyConstraint baseColumnNames="car_part_type_id" baseTableName="car_part"
+                                 constraintName="za4331losx9j7jbn5d6bfgbciavfg" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="car_part_type" validate="true"/>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="1698981134717-7">
+        <addForeignKeyConstraint baseColumnNames="car_part_id" baseTableName="car_part_analog"
+                                 constraintName="za4331losx9j7jbn5d7bfgbciavfg" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="car_part" validate="true"/>
+    </changeSet>
+
+</databaseChangeLog>

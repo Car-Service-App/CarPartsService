@@ -1,0 +1,62 @@
+package ru.vsu.cs.zmaev.carpartsservice.service.impl;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCategoryCriteriaSearch;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
+import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartCategoryMapper;
+import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
+import ru.vsu.cs.zmaev.carpartsservice.repository.CarPartCategoryRepository;
+import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CarPartCategoryCriteriaRepository;
+import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
+
+@Service
+@RequiredArgsConstructor
+public class CarPartCategoryServiceImpl implements CarPartCategoryService {
+    private final CarPartCategoryRepository carPartCategoryRepository;
+    private final CarPartCategoryCriteriaRepository carPartCategoryCriteriaRepository;
+    private final CarPartCategoryMapper carPartCategoryMapper;
+
+    @Override
+    public Page<CarPartCategoryResponseDto> findAllWithFilters(EntityPage entityPage, CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch) {
+        return carPartCategoryCriteriaRepository
+                .findAllWithFilters(entityPage, carPartCategoryCriteriaSearch)
+                .map(carPartCategoryMapper::toDto);
+    }
+
+    @Override
+    public CarPartCategory findOneById(Long id) {
+        return carPartCategoryRepository.findById(id).orElseThrow(() ->
+                new NoSuchEntityException(CarPartCategory.class, id));
+    }
+
+    @Override
+    public CarPartCategory save(CarPartCategoryRequestDto carPartCategoryRequestDto) {
+        return carPartCategoryRepository.save(carPartCategoryMapper.toEntity(carPartCategoryRequestDto));
+    }
+
+    @Override
+    public CarPartCategory update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto) {
+        return carPartCategoryRepository
+                .findById(id)
+                .map(existingEvent -> {
+                    carPartCategoryMapper.partialUpdate(existingEvent, carPartCategoryRequestDto);
+                    return existingEvent;
+                })
+                .map(carPartCategoryRepository::save)
+                .orElseThrow(() -> new NoSuchEntityException(CarPartCategory.class, id));
+    }
+
+    @Override
+    public void delete(Long id) {
+        CarPartCategory carPartCategory = carPartCategoryRepository
+                .findById(id)
+                .orElseThrow(() ->
+                new NoSuchEntityException(CarPartCategory.class, id));
+        carPartCategoryRepository.delete(carPartCategory);
+    }
+}

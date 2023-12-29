@@ -1,0 +1,20 @@
+package ru.vsu.cs.zmaev.carpartsservice.domain.enums;
+
+public enum CategoryType {
+    FILTER,
+    BREAKING_SYSTEM_AND_HYDRAULICS,
+    SUSPENSION,
+    STEERING,
+    ENGINE,
+    ELECTRIC_SYSTEM,
+    TIMING_DRIVES,
+    REFRIGERATION_AND_AIR_CONDITIONING_SYSTEMS,
+    BODY_PARTS,
+    OPTICS,
+    WIPERS,
+    FUEL_AIR_SYSTEM,
+    TRANSMISSION,
+    GLAZING,
+    EXHAUST_SYSTEM,
+    ACCESSORIES
+}
