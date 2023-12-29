@@ -8,22 +8,21 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.vsu.cs.zmaev.carpartsservice.controller.api.CarPartCategoryApi;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCategoryCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
-import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartCategoryMapper;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
 
 @RestController
 @RequestMapping("api/car-part-categories")
 @RequiredArgsConstructor
-public class CarPartCategoryController {
+public class CarPartCategoryController implements CarPartCategoryApi {
     private final CarPartCategoryService carPartCategoryService;
-    private final CarPartCategoryMapper carPartCategoryMapper;
 
     @GetMapping
-    public ResponseEntity<Page<CarPartCategoryResponseDto>> findAll(
+    public ResponseEntity<Page<CarPartCategoryResponseDto>> findAllWithFilters(
             @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
             @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize,
             @RequestParam(required = false) String name,
@@ -41,28 +40,24 @@ public class CarPartCategoryController {
     public ResponseEntity<CarPartCategoryResponseDto> findOneById(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(carPartCategoryMapper.toDto(carPartCategoryService.findOneById(id)));
+                .body(carPartCategoryService.findOneById(id));
     }
 
     @PostMapping
     public ResponseEntity<CarPartCategoryResponseDto> create(
             @Valid @RequestBody CarPartCategoryRequestDto carPartCategoryRequestDto) {
-        CarPartCategoryResponseDto carPartCategoryResponseDto = carPartCategoryMapper
-                .toDto(carPartCategoryService.save(carPartCategoryRequestDto));
-        return ResponseEntity.status(HttpStatus.OK).body(carPartCategoryResponseDto);
+        return ResponseEntity.status(HttpStatus.OK).body(carPartCategoryService.save(carPartCategoryRequestDto));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<CarPartCategoryResponseDto> update(
             @PathVariable Long id,
             @Valid @RequestBody CarPartCategoryRequestDto carPartCategoryRequestDto) {
-        CarPartCategoryResponseDto carPartCategoryResponseDto = carPartCategoryMapper
-                .toDto(carPartCategoryService.update(id, carPartCategoryRequestDto));
-        return ResponseEntity.status(HttpStatus.OK).body(carPartCategoryResponseDto);
+        return ResponseEntity.status(HttpStatus.OK).body(carPartCategoryService.update(id, carPartCategoryRequestDto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<CarPartCategoryResponseDto> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         carPartCategoryService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

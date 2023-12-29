@@ -22,25 +22,30 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
     private final CarPartCategoryMapper carPartCategoryMapper;
 
     @Override
-    public Page<CarPartCategoryResponseDto> findAllWithFilters(EntityPage entityPage, CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch) {
+    public Page<CarPartCategoryResponseDto> findAllWithFilters(
+            EntityPage entityPage,
+            CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch) {
         return carPartCategoryCriteriaRepository
                 .findAllWithFilters(entityPage, carPartCategoryCriteriaSearch)
                 .map(carPartCategoryMapper::toDto);
     }
 
     @Override
-    public CarPartCategory findOneById(Long id) {
-        return carPartCategoryRepository.findById(id).orElseThrow(() ->
+    public CarPartCategoryResponseDto findOneById(Long id) {
+        CarPartCategory carPartCategory = carPartCategoryRepository.findById(id).orElseThrow(() ->
                 new NoSuchEntityException(CarPartCategory.class, id));
+        return carPartCategoryMapper.toDto(carPartCategory);
     }
 
     @Override
-    public CarPartCategory save(CarPartCategoryRequestDto carPartCategoryRequestDto) {
-        return carPartCategoryRepository.save(carPartCategoryMapper.toEntity(carPartCategoryRequestDto));
+    public CarPartCategoryResponseDto save(CarPartCategoryRequestDto carPartCategoryRequestDto) {
+        CarPartCategory carPartCategory =
+                carPartCategoryRepository.save(carPartCategoryMapper.toEntity(carPartCategoryRequestDto));
+        return carPartCategoryMapper.toDto(carPartCategory);
     }
 
     @Override
-    public CarPartCategory update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto) {
+    public CarPartCategoryResponseDto update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto) {
         return carPartCategoryRepository
                 .findById(id)
                 .map(existingEvent -> {
@@ -48,6 +53,7 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
                     return existingEvent;
                 })
                 .map(carPartCategoryRepository::save)
+                .map(carPartCategoryMapper::toDto)
                 .orElseThrow(() -> new NoSuchEntityException(CarPartCategory.class, id));
     }
 

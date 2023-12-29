@@ -12,11 +12,11 @@ public interface CarPartCategoryService {
 
     Page<CarPartCategoryResponseDto> findAllWithFilters(EntityPage entityPage, CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch);
 
-    CarPartCategory findOneById(Long id);
+    CarPartCategoryResponseDto findOneById(Long id);
 
-    CarPartCategory save(CarPartCategoryRequestDto carPartCategoryRequestDto);
+    CarPartCategoryResponseDto save(CarPartCategoryRequestDto carPartCategoryRequestDto);
 
-    CarPartCategory update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto);
+    CarPartCategoryResponseDto update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto);
 
     void delete(Long id);
 }

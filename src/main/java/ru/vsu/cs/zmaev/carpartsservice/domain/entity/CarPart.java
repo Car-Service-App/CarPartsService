@@ -17,7 +17,6 @@ public class CarPart {
 
     private Long manufacturerId;
 
-
     private Long carId;
 
     @OneToOne
