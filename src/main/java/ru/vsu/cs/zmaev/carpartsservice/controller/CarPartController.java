@@ -13,7 +13,6 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
-import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartService;
 
 @RestController
@@ -27,8 +26,7 @@ public class CarPartController implements CarPartApi {
             @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
             @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize,
             @RequestParam(required = false) Long manufacturerId,
-            @RequestParam(required = false) Long carId,
-            @RequestParam(required = false) CarPartType carPartType,
+            @RequestParam(required = false) String carPartTypeName,
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String oem,
             @RequestParam(required = false) Double lastPrice,
@@ -39,7 +37,15 @@ public class CarPartController implements CarPartApi {
         EntityPage entityPage =
                 new EntityPage(pagePosition, pageSize, sortDirection, sortBy);
         CarPartCriteriaSearch criteriaSearch =
-                new CarPartCriteriaSearch();
+                new CarPartCriteriaSearch(
+                        0L,
+                        manufacturerId,
+                        carPartTypeName,
+                        name,
+                        oem,
+                        lastPrice,
+                        description
+                );
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(carPartService.findAllWithFilters(entityPage, criteriaSearch));

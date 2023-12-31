@@ -75,6 +75,15 @@ public interface CarPartAnalogApi {
             @Parameter(description = "Размер страницы")
             @RequestParam(defaultValue = "10") @Min(value = 1)
             Integer pageSize,
+            @Parameter(description = "OEM детали аналога")
+            @RequestParam(required = false)
+            String analogOem,
+            @Parameter(description = "OEM детали оригинала")
+            @RequestParam(required = false)
+            String originalOem,
+            @Parameter(description = "Цена детали аналога")
+            @RequestParam(required = false)
+            String price,
             @RequestParam(required = false)
             @Parameter(description = "Поле для сортировки") String sortBy,
             @RequestParam(required = false)

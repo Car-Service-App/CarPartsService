@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.ErrorMessage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
-import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 
 @Tag(name = "CarPart Api", description = "Api для работы с запчастями")
 public interface CarPartApi {
@@ -77,8 +76,7 @@ public interface CarPartApi {
             @RequestParam(defaultValue = "10") @Min(value = 1)
             Integer pageSize,
             @Parameter(description = "Id производителя детали")@RequestParam(required = false) Long manufacturerId,
-            @Parameter(description = "Id автомобиля")@RequestParam(required = false) Long carId,
-            @Parameter(description = "")@RequestParam(required = false) CarPartType carPartType,
+            @Parameter(description = "")@RequestParam(required = false) String carPartTypeName,
             @Parameter(description = "Название детали")@RequestParam(required = false) String name,
             @Parameter(description = "OEM номер детали")@RequestParam(required = false) String oem,
             @Parameter(description = "Последняя цена детали")@RequestParam(required = false) Double lastPrice,

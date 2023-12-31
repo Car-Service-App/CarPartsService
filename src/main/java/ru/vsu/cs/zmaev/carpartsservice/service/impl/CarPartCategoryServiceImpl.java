@@ -10,7 +10,7 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryRespon
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
 import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartCategoryMapper;
 import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
-import ru.vsu.cs.zmaev.carpartsservice.repository.CarPartCategoryRepository;
+import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CarPartCategoryCriteriaRepository;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
 
