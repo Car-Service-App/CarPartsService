@@ -8,6 +8,7 @@
         <insert tableName="car_part_category">
             <column name="id" value="1"/>
             <column name="name" value="FILTER"/>
+            <column name="image" value="category/filters"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

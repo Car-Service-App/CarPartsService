@@ -25,12 +25,12 @@ public class CarPartCategoryController implements CarPartCategoryApi {
     public ResponseEntity<Page<CarPartCategoryResponseDto>> findAllWithFilters(
             @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
             @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize,
-            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String categoryName,
             @RequestParam(required = false, defaultValue = "id") String sortBy,
             @RequestParam(required = false, defaultValue = "ASC") Sort.Direction sortDirection) {
         EntityPage entityPage = new EntityPage(pagePosition, pageSize, sortDirection, sortBy);
         CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch =
-                new CarPartCategoryCriteriaSearch(0L, name);
+                new CarPartCategoryCriteriaSearch(0L, categoryName);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(carPartCategoryService.findAllWithFilters(entityPage, carPartCategoryCriteriaSearch));

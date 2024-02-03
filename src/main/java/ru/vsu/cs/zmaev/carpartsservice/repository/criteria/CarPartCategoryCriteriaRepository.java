@@ -26,8 +26,8 @@ public class CarPartCategoryCriteriaRepository extends AbstractCriteriaRepositor
     @Override
     protected Predicate getPredicate(CarPartCategoryCriteriaSearch searchCriteria, Root<CarPartCategory> root) {
         List<Predicate> predicates = new ArrayList<>();
-        if (Objects.nonNull(searchCriteria.getName())) {
-            predicates.add(criteriaBuilder.like(root.get("name"), "%" + searchCriteria.getName() + "%"));
+        if (Objects.nonNull(searchCriteria.getCategoryName())) {
+            predicates.add(criteriaBuilder.like(root.get("categoryName"), "%" + searchCriteria.getCategoryName() + "%"));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }

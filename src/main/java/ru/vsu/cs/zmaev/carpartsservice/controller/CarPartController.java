@@ -3,6 +3,7 @@ package ru.vsu.cs.zmaev.carpartsservice.controller;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,14 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
-import ru.vsu.cs.zmaev.carpartsservice.service.CarPartService;
+import ru.vsu.cs.zmaev.carpartsservice.service.impl.CarPartServiceImpl;
 
+@Slf4j
 @RestController
 @RequestMapping("api/car-parts")
 @RequiredArgsConstructor
 public class CarPartController implements CarPartApi {
-    private final CarPartService carPartService;
+    private final CarPartServiceImpl carPartService;
 
     @GetMapping(produces = "application/json")
     public ResponseEntity<Page<CarPartResponseDto>> findAllWithFilters(

@@ -2,17 +2,18 @@ package ru.vsu.cs.zmaev.carpartsservice.domain.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 
 @Data
 @Schema(description = "Описание класса CarPartCriteriaSearch")
 public class CarPartResponseDto {
     @Schema(description = "Id детали")
     private final Long id;
+    @Schema(description = "Id автомобиля")
+    private final  Long carId;
     @Schema(description = "Id производителя")
     private final  Long manufacturerId;
     @Schema(description = "Название категории")
-    private final CarPartType carPartType;
+    private final CarPartTypeResponseDto carPartType;
     @Schema(description = "Название детали")
     private final  String name;
     @Schema(description = "OEM номер детали")

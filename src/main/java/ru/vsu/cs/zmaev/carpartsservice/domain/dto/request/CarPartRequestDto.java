@@ -8,6 +8,8 @@ import lombok.Data;
 public class CarPartRequestDto {
     @Schema(description = "Id производителя")
     private final Long manufacturerId;
+    @Schema(description = "Id автомобиля")
+    private final Long carId;
     @Schema(description = "Название категории")
     private final String carPartTypeName;
     @Schema(description = "Название детали")

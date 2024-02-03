@@ -16,7 +16,7 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartTypeResponseDt
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartTypeService;
 
 @RestController
-@RequestMapping("api/car-part-type-controller")
+@RequestMapping("api/car-part-type")
 @RequiredArgsConstructor
 public class CarPartTypeController implements CarPartTypeApi {
     private final CarPartTypeService carPartTypeService;

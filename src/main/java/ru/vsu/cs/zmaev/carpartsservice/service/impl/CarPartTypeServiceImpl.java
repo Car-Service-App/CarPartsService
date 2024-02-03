@@ -8,9 +8,11 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartTypeCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartTypeRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartTypeResponseDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartTypeMapper;
 import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
+import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartTypeRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CriteriaRepository;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartTypeService;
@@ -22,6 +24,8 @@ public class CarPartTypeServiceImpl implements CarPartTypeService {
     private final CarPartTypeRepository carPartTypeRepository;
     private final CriteriaRepository<CarPartType, CarPartTypeCriteriaSearch> carPartTypeCriteriaRepository;
     private final CarPartTypeMapper carPartTypeMapper;
+
+    private final CarPartCategoryRepository carPartCategoryRepository;
 
     @Override
     @Transactional(readOnly = true)
@@ -43,6 +47,12 @@ public class CarPartTypeServiceImpl implements CarPartTypeService {
     @Transactional
     public CarPartTypeResponseDto save(CarPartTypeRequestDto carPartTypeRequestDto) {
         CarPartType carPartType = carPartTypeMapper.toEntity(carPartTypeRequestDto);
+        CarPartCategory carPartCategory =
+                carPartCategoryRepository.findById(carPartTypeRequestDto.getCarPartCategoryId())
+                        .orElseThrow(() -> new NoSuchEntityException(
+                                CarPartCategory.class,
+                                carPartTypeRequestDto.getCarPartCategoryId()));
+        carPartType.setCarPartCategory(carPartCategory);
         carPartType = carPartTypeRepository.save(carPartType);
         return carPartTypeMapper.toDto(carPartType);
     }

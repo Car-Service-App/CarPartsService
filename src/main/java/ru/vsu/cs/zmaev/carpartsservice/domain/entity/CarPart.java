@@ -35,9 +35,8 @@ public class CarPart {
     @Column(name = "description")
     private String description;
 
-    @Lob
     @Column(name = "image")
-    private byte[] image;
+    private String carPartImage;
 
     @OneToMany(mappedBy = "carPart")
     private List<CarPartAnalog> carPartAnalogs;

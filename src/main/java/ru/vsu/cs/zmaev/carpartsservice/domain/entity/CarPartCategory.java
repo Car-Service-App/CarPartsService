@@ -17,12 +17,11 @@ public class CarPartCategory {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category_name")
-    private CategoryType categoryType;
+    private CategoryType categoryName;
 
     @OneToMany(mappedBy = "carPartCategory")
     private List<CarPartType> carPartTypes;
 
     @Column(name = "image")
-    @Lob
-    private byte[] image;
+    private String image;
 }

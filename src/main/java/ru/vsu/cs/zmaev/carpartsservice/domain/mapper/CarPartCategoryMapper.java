@@ -13,7 +13,4 @@ public interface CarPartCategoryMapper extends EntityMapper<CarPartCategory, Car
     CarPartCategoryResponseDto toDto(CarPartCategory carPartCategory);
 
     CarPartCategoryResponseDto toResponseDto(CarPartCategoryRequestDto carPartCategoryRequestDto);
-
-
-
 }

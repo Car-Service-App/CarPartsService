@@ -13,5 +13,5 @@ public class CarPartTypeResponseDto {
     @Schema(description = "Тип детали", example = "Civic")
     private final PartType partType;
     @Schema(description = "Категория детали", example = "Civic")
-    private CarPartCategory carPartCategory;
+    private CarPartCategoryResponseDto carPartCategory;
 }
