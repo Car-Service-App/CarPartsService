@@ -10,5 +10,5 @@ public class CarPartCategoryCriteriaSearch {
     private final Long id;
 
     @Schema(description = "Название категории", example = "FILTER")
-    private final String name;
+    private final String categoryName;
 }

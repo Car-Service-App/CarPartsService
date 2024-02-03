@@ -12,7 +12,7 @@
             <column name="category_name" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="image" type="BLOB">
+            <column name="image" type="VARCHAR(255)">
                 <constraints nullable="false" unique="false"/>
             </column>
         </createTable>
@@ -56,7 +56,7 @@
             <column name="description" type="VARCHAR">
                 <constraints unique="false" nullable="true"/>
             </column>
-            <column name="image" type="BLOB">
+            <column name="image" type="VARCHAR(255)">
                 <constraints nullable="false" unique="false"/>
             </column>
         </createTable>

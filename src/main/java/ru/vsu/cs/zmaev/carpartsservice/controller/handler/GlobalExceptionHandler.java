@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex) {
-        String message = "Неправильный формат значения для поля " + ex.getName() + ": " + ex.getValue();
+        String message = "Incorrect value format for field " + ex.getName() + ": " + ex.getValue();
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
