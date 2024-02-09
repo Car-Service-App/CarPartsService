@@ -58,6 +58,13 @@ public class CarPartServiceImpl implements CarPartService {
     }
 
     @Override
+    public CarPartResponseDto findOneByOem(String oem) {
+        CarPart carPart = carPartRepository.findCarPartByOem(oem).orElseThrow(() ->
+                new NoSuchEntityException("No such car part with oem: " + oem));
+        return carPartMapper.toDto(carPart);
+    }
+
+    @Override
     @Transactional
     public CarPartResponseDto save(CarPartRequestDto carPartRequestDto) {
         CarPartType carPartType = carPartTypeRepository.findCarPartTypeByPartType(

@@ -4,7 +4,499 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
-    <changeSet id="0" author="ZmaevDA">
+    <changeSet author="ZmaevDA" id="2138581121856-1">
+        <insert tableName="car_part_type">
+            <column name="id" value="1"/>
+            <column name="car_part_category_id" value="1"/>
+            <column name="car_part_name" value="OIL_FILTERS"/>
+            <column name="image" value="type/filters/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="2"/>
+            <column name="car_part_category_id" value="1"/>
+            <column name="car_part_name" value="AIR_FILTERS"/>
+            <column name="image" value="type/filters/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="3"/>
+            <column name="car_part_category_id" value="1"/>
+            <column name="car_part_name" value="FUEL_FILTERS"/>
+            <column name="image" value="type/filters/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="4"/>
+            <column name="car_part_category_id" value="1"/>
+            <column name="car_part_name" value="SALON_FILTERS"/>
+            <column name="image" value="type/filters/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="5"/>
+            <column name="car_part_category_id" value="1"/>
+            <column name="car_part_name" value="HYDRAULIC_FILTERS"/>
+            <column name="image" value="type/filters/"/>
+        </insert>
+    </changeSet>
 
+    <changeSet author="ZmaevDA" id="2138581121856-2">
+        <insert tableName="car_part_type">
+            <column name="id" value="6"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="BRAKING_PADS"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="7"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="BRAKE_DISCS"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="8"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="DRUM_BRAKES"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="9"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="WEAR_SENSORS"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="10"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="BREAK_CALIPER"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="11"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="BRAKE_CYLINDERS"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="12"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="CLUTCH_CABLES"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="13"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="CLUTCH_CONTROL"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="14"/>
+            <column name="car_part_category_id" value="2"/>
+            <column name="car_part_name" value="HOSES"/>
+            <column name="image" value="type/breaks/"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="ZmaevDA" id="2138581121856-3">
+        <insert tableName="car_part_type">
+            <column name="id" value="15"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="SHOCK_ABSORBERS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="16"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="BUSHINGS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="17"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="SHOCK_ABSORBER_SUPPORT"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="18"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="WHEEL_HUB"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="19"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="STABILIZER_POLE"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="20"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="BEARINGS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="21"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="SUSPENSION_ARM"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="22"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="CUSHIONS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="23"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="SPRINGS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="24"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="AIR_SUSPENSION_COMPRESSORS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="25"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="ANTHERS"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="26"/>
+            <column name="car_part_category_id" value="3"/>
+            <column name="car_part_name" value="SUSPENSION_SPRING"/>
+            <column name="image" value="type/suspension/"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="ZmaevDA" id="2138581121856-4">
+        <insert tableName="car_part_type">
+            <column name="id" value="27"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="TIE_ROD"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="28"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="STEERING_TIPS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="29"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="POWER_PUMPS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="30"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="STEERING_LEVERS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="31"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="STEERING_BOOTS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="32"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="STEERING_RESERVOIRS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="33"/>
+            <column name="car_part_category_id" value="4"/>
+            <column name="car_part_name" value="STEERING_GEARS"/>
+            <column name="image" value="type/steering/"/>
+        </insert>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="2138581121856-5">
+        <insert tableName="car_part_type">
+            <column name="id" value="34"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="SEALS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="35"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="LIDS_AND_PLUGS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="36"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="ENGINE_GASKET"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="37"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="OIL_PUMP"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="38"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="ENGINE_SHAFT"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="39"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="CONNECTING_ROD_SENSORS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="40"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="VALVE"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="41"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="COLLECTOR"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="42"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="PISTON_RINGS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="43"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="LARGE_ENGINE_PARTS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="44"/>
+            <column name="car_part_category_id" value="5"/>
+            <column name="car_part_name" value="PISTONS_AND_CONNECTING_RODS"/>
+            <column name="image" value="type/engine/"/>
+        </insert>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="2138581121856-6">
+        <insert tableName="car_part_type">
+            <column name="id" value="45" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="SPARK_PLUG"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="46" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="IGNITION_COIL"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="47" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="HIGH_VOLTAGE_WIRE"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="48" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="OXYGEN_SENSOR"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="49" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="GENERATOR"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="50" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="CONTROL_BLOCK"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="51" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="ADAPTER"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="52" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="SENSOR"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="53" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="STARTER"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="54" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="MOTORS"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="55" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="RELAY"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="56" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="GLOW_PLUG"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="57" />
+            <column name="car_part_category_id" value="6"/>
+            <column name="car_part_name" value="ELECTRIC_CLUTCH"/>
+            <column name="image" value="type/electrics/"/>
+        </insert>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="2138581121856-7">
+        <insert tableName="car_part_type">
+            <column name="id" value="58" />
+            <column name="car_part_category_id" value="7"/>
+            <column name="car_part_name" value="V_BELT"/>
+            <column name="image" value="type/timing/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="59" />
+            <column name="car_part_category_id" value="7"/>
+            <column name="car_part_name" value="TIMING_BELT"/>
+            <column name="image" value="type/timing/"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="ZmaevDA" id="2138581121856-8">
+        <insert tableName="car_part_type">
+            <column name="id" value="60" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="RADIATOR"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="61" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="VENTILATOR"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="62" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="THERMOSTAT"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="63" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="WATER_PUMP"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="64" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="DRYER"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="65" />
+            <column name="car_part_category_id" value="8"/>
+            <column name="car_part_name" value="AIR_CONDITIONING_COMPRESSOR"/>
+            <column name="image" value="type/air/"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="ZmaevDA" id="2138581121856-10">
+        <insert tableName="car_part_type">
+            <column name="id" value="66" />
+            <column name="car_part_category_id" value="10"/>
+            <column name="car_part_name" value="MAIN_LIGHTING"/>
+            <column name="image" value="type/optics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="67" />
+            <column name="car_part_category_id" value="10"/>
+            <column name="car_part_name" value="ADD_LIGHTING"/>
+            <column name="image" value="type/optics/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="68" />
+            <column name="car_part_category_id" value="10"/>
+            <column name="car_part_name" value="LAMPS"/>
+            <column name="image" value="type/optics/"/>
+        </insert>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="2138581121856-12">
+        <insert tableName="car_part_type">
+            <column name="id" value="69" />
+            <column name="car_part_category_id" value="12"/>
+            <column name="car_part_name" value="FUEL_PUMP"/>
+            <column name="image" value="type/fuel/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="70" />
+            <column name="car_part_category_id" value="12"/>
+            <column name="car_part_name" value="AIR_FLOW_METERS"/>
+            <column name="image" value="type/fuel/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="71" />
+            <column name="car_part_category_id" value="12"/>
+            <column name="car_part_name" value="INJECTOR"/>
+            <column name="image" value="type/fuel/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="72" />
+            <column name="car_part_category_id" value="12"/>
+            <column name="car_part_name" value="THROTTLE"/>
+            <column name="image" value="type/fuel/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="73" />
+            <column name="car_part_category_id" value="12"/>
+            <column name="car_part_name" value="VACUUM_PUMP"/>
+            <column name="image" value="type/fuel/"/>
+        </insert>
+    </changeSet>
+    <changeSet author="ZmaevDA" id="2138581121856-13">
+        <insert tableName="car_part_type">
+            <column name="id" value="74" />
+            <column name="car_part_category_id" value="13"/>
+            <column name="car_part_name" value="CLUTCH_DISC"/>
+            <column name="image" value="type/transmission/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="75" />
+            <column name="car_part_category_id" value="13"/>
+            <column name="car_part_name" value="CLUTCH_BASKET"/>
+            <column name="image" value="type/transmission/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="76" />
+            <column name="car_part_category_id" value="13"/>
+            <column name="car_part_name" value="DRIVE_SHAFT"/>
+            <column name="image" value="type/transmission/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="77" />
+            <column name="car_part_category_id" value="13"/>
+            <column name="car_part_name" value="FLYWHEEL"/>
+            <column name="image" value="type/transmission/"/>
+        </insert>
+        <insert tableName="car_part_type">
+            <column name="id" value="78" />
+            <column name="car_part_category_id" value="13"/>
+            <column name="car_part_name" value="BELT_VARIATOR"/>
+            <column name="image" value="type/transmission/"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

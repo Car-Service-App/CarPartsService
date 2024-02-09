@@ -10,6 +10,7 @@ public interface CarPartService {
     Page<CarPartResponseDto> findAllWithFilters(EntityPage entityPage, CarPartCriteriaSearch carPartCriteriaSearch);
 
     CarPartResponseDto findOneById(Long id);
+    CarPartResponseDto findOneByOem(String oem);
 
     CarPartResponseDto save(CarPartRequestDto carPartRequestDto);
 

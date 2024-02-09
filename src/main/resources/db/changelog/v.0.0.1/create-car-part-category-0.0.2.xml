@@ -7,8 +7,83 @@
     <changeSet author="ZmaevDA" id="2138581121856-1">
         <insert tableName="car_part_category">
             <column name="id" value="1"/>
-            <column name="name" value="FILTER"/>
-            <column name="image" value="category/filters"/>
+            <column name="category_name" value="FILTER"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="2"/>
+            <column name="category_name" value="BREAKING_SYSTEM_AND_HYDRAULICS"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="3"/>
+            <column name="category_name" value="SUSPENSION"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="4"/>
+            <column name="category_name" value="STEERING"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="5"/>
+            <column name="category_name" value="ENGINE"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="6"/>
+            <column name="category_name" value="ELECTRIC_SYSTEM"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="7"/>
+            <column name="category_name" value="TIMING_DRIVES"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="8"/>
+            <column name="category_name" value="REFRIGERATION_AND_AIR_CONDITIONING_SYSTEMS"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="9"/>
+            <column name="category_name" value="BODY_PARTS"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="10"/>
+            <column name="category_name" value="OPTICS"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="11"/>
+            <column name="category_name" value="WIPERS"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="12"/>
+            <column name="category_name" value="FUEL_AIR_SYSTEM"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="13"/>
+            <column name="category_name" value="TRANSMISSION"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="14"/>
+            <column name="category_name" value="GLAZING"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="15"/>
+            <column name="category_name" value="EXHAUST_SYSTEM"/>
+            <column name="image" value="category"/>
+        </insert>
+        <insert tableName="car_part_category">
+            <column name="id" value="16"/>
+            <column name="category_name" value="ACCESSORIES"/>
+            <column name="image" value="category"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

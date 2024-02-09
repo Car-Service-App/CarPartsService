@@ -23,4 +23,7 @@ public class CarPartType {
 
     @OneToOne(mappedBy = "carPartType")
     private CarPart carPart;
+
+    @Column(name = "image")
+    private String image;
 }

@@ -6,6 +6,8 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartTypeCriteriaSe
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartTypeRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartTypeResponseDto;
 
+import java.util.List;
+
 public interface CarPartTypeService {
     Page<CarPartTypeResponseDto> findAllWithFilters(EntityPage entityPage, CarPartTypeCriteriaSearch carPartTypeCriteriaSearch);
 
@@ -14,6 +16,8 @@ public interface CarPartTypeService {
     CarPartTypeResponseDto save(CarPartTypeRequestDto carPartTypeRequestDto);
 
     CarPartTypeResponseDto update(Long id, CarPartTypeRequestDto carPartTypeRequestDto);
+
+    List<CarPartTypeResponseDto> findCarPartTypeByCarPartCategory(String categoryName);
 
     void delete(Long id);
 }

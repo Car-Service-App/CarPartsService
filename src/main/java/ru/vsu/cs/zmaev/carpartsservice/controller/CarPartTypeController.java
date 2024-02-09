@@ -15,6 +15,8 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartTypeRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartTypeResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartTypeService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/car-part-type")
 @RequiredArgsConstructor
@@ -42,6 +44,15 @@ public class CarPartTypeController implements CarPartTypeApi {
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<CarPartTypeResponseDto> findOneById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(carPartTypeService.findOneById(id));
+    }
+
+    @GetMapping(value = "/category-name", produces = "application/json")
+    public ResponseEntity<List<CarPartTypeResponseDto>> findCarPartTypesByCategoryName(
+            @RequestParam String categoryName
+    ) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(carPartTypeService.findCarPartTypeByCarPartCategory(categoryName));
     }
 
     @PostMapping(produces = "application/json")

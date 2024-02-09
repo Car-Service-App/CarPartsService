@@ -33,7 +33,7 @@ public class CarPartCriteriaRepository extends AbstractCriteriaRepository<CarPar
     protected Predicate getPredicate(CarPartCriteriaSearch searchCriteria, Root<CarPart> root) {
         List<Predicate> predicates = new ArrayList<>();
         if (Objects.nonNull(searchCriteria.getManufacturerId())) {
-            predicates.add(criteriaBuilder.like(root.get("manufacturerId"), "%" + searchCriteria.getManufacturerId() + "%"));
+            predicates.add(criteriaBuilder.equal(root.get("manufacturerId"), searchCriteria.getManufacturerId()));
         }
         if (Objects.nonNull(searchCriteria.getName())) {
             predicates.add(criteriaBuilder.like(root.get("name"), "%" + searchCriteria.getName() + "%"));
@@ -51,8 +51,7 @@ public class CarPartCriteriaRepository extends AbstractCriteriaRepository<CarPar
                 throw new NoSuchAttributeException(searchCriteria.getCarPartType());
             }
             predicates.add(
-                    criteriaBuilder.equal(root.get("carPartType"), PartType.valueOf(searchCriteria.getCarPartType())
-                    ));
+                    criteriaBuilder.equal(root.get("carPartType"), PartType.valueOf(searchCriteria.getCarPartType())));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
