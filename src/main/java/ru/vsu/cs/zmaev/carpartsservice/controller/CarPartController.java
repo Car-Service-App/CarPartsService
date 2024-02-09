@@ -58,6 +58,11 @@ public class CarPartController implements CarPartApi {
         return ResponseEntity.status(HttpStatus.OK).body(carPartService.findOneById(id));
     }
 
+    @GetMapping(value = "/oem/{oem}", produces = "application/json")
+    public ResponseEntity<CarPartResponseDto> findOneByOem(@PathVariable String oem) {
+        return ResponseEntity.status(HttpStatus.OK).body(carPartService.findOneByOem(oem));
+    }
+
     @PostMapping(produces = "application/json")
     public ResponseEntity<CarPartResponseDto> create(@Valid @RequestBody CarPartRequestDto requestDto) {
         return ResponseEntity.status(HttpStatus.OK).body(carPartService.save(requestDto));

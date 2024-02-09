@@ -6,4 +6,5 @@
         <include file="v.0.0.1/init-db-0.0.1.xml" relativeToChangelogFile="true"/>
         <include file="v.0.0.1/create-car-part-category-0.0.2.xml" relativeToChangelogFile="true"/>
         <include file="v.0.0.1/create-car-part-type-0.0.3.xml" relativeToChangelogFile="true"/>
+        <include file="v.0.0.1/create-car-parts-0.0.4.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
