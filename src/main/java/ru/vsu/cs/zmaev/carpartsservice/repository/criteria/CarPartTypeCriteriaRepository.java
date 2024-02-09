@@ -41,8 +41,8 @@ public class CarPartTypeCriteriaRepository extends AbstractCriteriaRepository<Ca
         }
         if (Objects.nonNull(searchCriteria.getCarPartCategory())) {
             Join<CarPartType, CarPartCategory> customJoin = root.join("carPartCategory", JoinType.INNER);
-            predicates.add(criteriaBuilder.like(
-                    customJoin.get("categoryType"), "%" + searchCriteria.getCarPartCategory() + "%"));
+            predicates.add(criteriaBuilder.equal(
+                    customJoin.get("categoryName"), "%" + searchCriteria.getCarPartCategory() + "%"));
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }

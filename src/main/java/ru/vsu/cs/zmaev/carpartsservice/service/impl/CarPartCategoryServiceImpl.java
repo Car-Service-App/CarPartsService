@@ -9,12 +9,15 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCategoryCriter
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
-import ru.vsu.cs.zmaev.carpartsservice.domain.enums.CategoryType;
+import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartCategoryMapper;
 import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
 import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CarPartCategoryCriteriaRepository;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -60,6 +63,14 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
                 .map(carPartCategoryMapper::toDto)
                 .orElseThrow(() -> new NoSuchEntityException(CarPartCategory.class, id));
     }
+
+//    public List<CarPartCategoryResponseDto> findCategoriesByTypeName(String categoryType) {
+//        return carPartCategoryRepository
+//                .findCarPartByCarPartType(categoryType)
+//                .stream()
+//                .map(carPartCategoryMapper::toDto)
+//                .collect(Collectors.toList());
+//    }
 
     @Override
     public void delete(Long id) {

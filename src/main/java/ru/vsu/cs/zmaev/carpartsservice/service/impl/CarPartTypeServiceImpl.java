@@ -2,6 +2,7 @@ package ru.vsu.cs.zmaev.carpartsservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
@@ -10,12 +11,18 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartTypeRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartTypeResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
+import ru.vsu.cs.zmaev.carpartsservice.domain.enums.CategoryType;
+import ru.vsu.cs.zmaev.carpartsservice.domain.enums.PartType;
 import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartTypeMapper;
+import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchAttributeException;
 import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
 import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartTypeRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CriteriaRepository;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartTypeService;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -69,6 +76,20 @@ public class CarPartTypeServiceImpl implements CarPartTypeService {
                 .map(carPartTypeRepository::save)
                 .map(carPartTypeMapper::toDto)
                 .orElseThrow(() -> new NoSuchEntityException(CarPartType.class, id));
+    }
+
+    @Override
+    public List<CarPartTypeResponseDto> findCarPartTypeByCarPartCategory(String categoryName) {
+        try {
+            CategoryType.valueOf(categoryName);
+        } catch (IllegalArgumentException e) {
+            throw new NoSuchAttributeException(categoryName);
+        }
+        return carPartTypeRepository
+                .findCarPartTypeByCarPartCategory(CategoryType.valueOf(categoryName))
+                .stream()
+                .map(carPartTypeMapper::toDto)
+                .toList();
     }
 
     @Override
