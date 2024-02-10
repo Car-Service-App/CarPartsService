@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseForMarketplaceDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPart;
 
 import java.math.BigDecimal;
@@ -20,8 +21,14 @@ public interface CarPartMapper extends EntityMapper<CarPart, CarPartRequestDto, 
     @Mapping(source = "lastPrice", target = "price", qualifiedByName = "bigDecimalToDouble")
     CarPartResponseDto toDto(CarPart entity);
 
+    @Mapping(source = "carPartType.partType", target = "carPartType")
+    @Mapping(source = "lastPrice", target = "price", qualifiedByName = "bigDecimalToDouble")
+    CarPartResponseForMarketplaceDto mapToCarPartResponseForMarketplaceDto(CarPart carPart);
+
     @Named("bigDecimalToDouble")
     default Double bigDecimalToDouble(BigDecimal value) {
         return value != null ? value.doubleValue() : null;
     }
+
+
 }
