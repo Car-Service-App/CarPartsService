@@ -14,6 +14,7 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseForMarketplaceDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.IdResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPart;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
@@ -55,6 +56,13 @@ public class CarPartServiceImpl implements CarPartService {
         CarPart carPart = carPartRepository.findById(id).orElseThrow(() ->
                 new NoSuchEntityException(CarPart.class, id));
         return carPartMapper.toDto(carPart);
+    }
+
+    @Transactional(readOnly = true)
+    public CarPartResponseForMarketplaceDto findByIdWithStringType(Long id) {
+        CarPart carPart = carPartRepository.findById(id).orElseThrow(() ->
+                new NoSuchEntityException(CarPart.class, id));
+        return carPartMapper.mapToCarPartResponseForMarketplaceDto(carPart);
     }
 
     @Override

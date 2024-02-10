@@ -14,6 +14,7 @@ import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartResponseForMarketplaceDto;
 import ru.vsu.cs.zmaev.carpartsservice.service.impl.CarPartServiceImpl;
 
 @Slf4j
@@ -56,6 +57,11 @@ public class CarPartController implements CarPartApi {
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<CarPartResponseDto> findOneById(@PathVariable Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(carPartService.findOneById(id));
+    }
+
+    @GetMapping(value = "/string-name/{id}", produces = "application/json")
+    public ResponseEntity<CarPartResponseForMarketplaceDto> findOneByIdWithStringType(@PathVariable Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(carPartService.findByIdWithStringType(id));
     }
 
     @GetMapping(value = "/oem/{oem}", produces = "application/json")
