@@ -15,7 +15,40 @@
             <column name="last_price" value="347"/>
             <column name="description" value="для моторных масел"/>
             <column name="image" value="filters/1/9818914980"/>
+        </insert>
+        <insert tableName="car_part">
+            <column name="id" value="2"/>
+            <column name="car_id" value="13"/>
+            <column name="manufacturer_id" value="36"/>
+            <column name="car_part_type_id" value="1"/>
+            <column name="name" value="Фильтр масляный Toyota"/>
+            <column name="oem" value="9091510003"/>
+            <column name="last_price" value="446"/>
+            <column name="description" value="для моторных масел"/>
+            <column name="image" value="filters/2/9091510003"/>
+        </insert>
+        <insert tableName="car_part">
+            <column name="id" value="3"/>
+            <column name="car_id" value="13"/>
+            <column name="manufacturer_id" value="36"/>
+            <column name="car_part_type_id" value="1"/>
+            <column name="name" value="Toyota Масло моторное engine oil 5W-40 Синтетическое 5 л"/>
+            <column name="oem" value="0888080835"/>
+            <column name="last_price" value="3117"/>
+            <column name="description" value="моторное масло"/>
+            <column name="image" value="oil/2/0888080835"/>
+        </insert>
 
+        <insert tableName="car_part">
+            <column name="id" value="4"/>
+            <column name="car_id" value="13"/>
+            <column name="manufacturer_id" value="36"/>
+            <column name="car_part_type_id" value="1"/>
+            <column name="name" value="Свеча зажигания Toyota"/>
+            <column name="oem" value="9091901275"/>
+            <column name="last_price" value="401"/>
+            <column name="description" value="Тип свечи: Иридиевая"/>
+            <column name="image" value="spark/2/9091901275"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
