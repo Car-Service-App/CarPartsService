@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import ru.vsu.cs.zmaev.carpartsservice.controller.api.CarPartCategoryApi;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCategoryCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategorySearchDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
 
@@ -19,21 +21,30 @@ import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
 @RequestMapping("api/car-part-categories")
 @RequiredArgsConstructor
 public class CarPartCategoryController implements CarPartCategoryApi {
+
     private final CarPartCategoryService carPartCategoryService;
 
-    @GetMapping
+    @PostMapping(value = "/filter", produces = "application/json")
     public ResponseEntity<Page<CarPartCategoryResponseDto>> findAllWithFilters(
             @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
             @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize,
-            @RequestParam(required = false) String categoryName,
+            @RequestBody CarPartCategorySearchDto carPartCategorySearchDto,
             @RequestParam(required = false, defaultValue = "id") String sortBy,
             @RequestParam(required = false, defaultValue = "ASC") Sort.Direction sortDirection) {
         EntityPage entityPage = new EntityPage(pagePosition, pageSize, sortDirection, sortBy);
         CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch =
-                new CarPartCategoryCriteriaSearch(0L, categoryName);
+                new CarPartCategoryCriteriaSearch(0L, carPartCategorySearchDto.getCategoryName());
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(carPartCategoryService.findAllWithFilters(entityPage, carPartCategoryCriteriaSearch));
+    }
+
+    @GetMapping( produces = "application/json")
+    public ResponseEntity<Page<CarPartCategoryResponseDto>> findAll(
+            @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
+            @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize
+    ) {
+        return ResponseEntity.ok(carPartCategoryService.findAll(PageRequest.of(pagePosition, pageSize)));
     }
 
     @GetMapping("/{id}")

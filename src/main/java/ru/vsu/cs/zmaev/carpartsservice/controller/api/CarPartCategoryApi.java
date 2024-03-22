@@ -13,9 +13,11 @@ import jakarta.validation.constraints.Min;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.ErrorMessage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategorySearchDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
 
 @Tag(name = "CarPartCategory Api", description = "Api для работы с категориями запчастей")
@@ -75,7 +77,7 @@ public interface CarPartCategoryApi {
             @Parameter(description = "Размер страницы")
             @RequestParam(defaultValue = "10") @Min(value = 1)
             Integer pageSize,
-            @Parameter(description = "Название категории") @RequestParam(required = false) String name,
+            @RequestBody CarPartCategorySearchDto carPartCategorySearchDto,
             @RequestParam(required = false)
             @Parameter(description = "Поле для сортировки") String sortBy,
             @RequestParam(required = false)
@@ -88,6 +90,34 @@ public interface CarPartCategoryApi {
                             "DESC"
                     }))
             Sort.Direction sortDirection);
+
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Успешный возврат типа детали автомобиля",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = CarPartCategoryResponseDto.class)
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Неверный тип детали автомобиля",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    }
+            )
+    })
+    @Operation(summary = "Получение всех типов деталей автомобилей")
+    ResponseEntity<Page<CarPartCategoryResponseDto>> findAll(
+            @RequestParam(defaultValue = "0") @Min(value = 0) Integer pagePosition,
+            @RequestParam(defaultValue = "10") @Min(value = 1) Integer pageSize
+    );
 
     @ApiResponses(value = {
             @ApiResponse(

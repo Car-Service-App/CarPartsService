@@ -3,21 +3,19 @@ package ru.vsu.cs.zmaev.carpartsservice.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartCategoryCriteriaSearch;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartCategoryRequestDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartCategoryResponseDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartCategory;
-import ru.vsu.cs.zmaev.carpartsservice.domain.entity.CarPartType;
 import ru.vsu.cs.zmaev.carpartsservice.domain.mapper.CarPartCategoryMapper;
 import ru.vsu.cs.zmaev.carpartsservice.exception.NoSuchEntityException;
-import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.repository.criteria.CarPartCategoryCriteriaRepository;
+import ru.vsu.cs.zmaev.carpartsservice.repository.jpa.CarPartCategoryRepository;
 import ru.vsu.cs.zmaev.carpartsservice.service.CarPartCategoryService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -28,6 +26,7 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
     private final CarPartCategoryMapper carPartCategoryMapper;
 
     @Override
+    @Transactional(readOnly = true)
     public Page<CarPartCategoryResponseDto> findAllWithFilters(
             EntityPage entityPage,
             CarPartCategoryCriteriaSearch carPartCategoryCriteriaSearch) {
@@ -37,6 +36,13 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Page<CarPartCategoryResponseDto> findAll(Pageable pageable) {
+        return carPartCategoryRepository.findAll(pageable).map(carPartCategoryMapper::toDto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public CarPartCategoryResponseDto findOneById(Long id) {
         CarPartCategory carPartCategory = carPartCategoryRepository.findById(id).orElseThrow(() ->
                 new NoSuchEntityException(CarPartCategory.class, id));
@@ -44,6 +50,7 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
     }
 
     @Override
+    @Transactional
     public CarPartCategoryResponseDto save(CarPartCategoryRequestDto carPartCategoryRequestDto) {
         CarPartCategory carPartCategory = carPartCategoryMapper.toEntity(carPartCategoryRequestDto);
         carPartCategory.setCategoryName(carPartCategoryRequestDto.getCategoryName());
@@ -52,6 +59,7 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
     }
 
     @Override
+    @Transactional
     public CarPartCategoryResponseDto update(Long id, CarPartCategoryRequestDto carPartCategoryRequestDto) {
         return carPartCategoryRepository
                 .findById(id)
@@ -64,15 +72,8 @@ public class CarPartCategoryServiceImpl implements CarPartCategoryService {
                 .orElseThrow(() -> new NoSuchEntityException(CarPartCategory.class, id));
     }
 
-//    public List<CarPartCategoryResponseDto> findCategoriesByTypeName(String categoryType) {
-//        return carPartCategoryRepository
-//                .findCarPartByCarPartType(categoryType)
-//                .stream()
-//                .map(carPartCategoryMapper::toDto)
-//                .collect(Collectors.toList());
-//    }
-
     @Override
+    @Transactional
     public void delete(Long id) {
         CarPartCategory carPartCategory = carPartCategoryRepository
                 .findById(id)

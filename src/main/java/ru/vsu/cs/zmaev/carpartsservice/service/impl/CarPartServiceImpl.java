@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,11 @@ public class CarPartServiceImpl implements CarPartService {
     @Transactional(readOnly = true)
     public Page<CarPartResponseDto> findAllWithFilters(EntityPage entityPage, CarPartCriteriaSearch carPartCriteriaSearch) {
         return carPartSearchCriteriaRepository.findAllWithFilters(entityPage, carPartCriteriaSearch).map(carPartMapper::toDto);
+    }
+
+    @Override
+    public Page<CarPartResponseDto> findAll(Pageable pageable) {
+        return carPartRepository.findAll(pageable).map(carPartMapper::toDto);
     }
 
     @Override

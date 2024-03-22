@@ -13,13 +13,16 @@ import jakarta.validation.constraints.Min;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.ErrorMessage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartAnalogRequestDto;
+import ru.vsu.cs.zmaev.carpartsservice.domain.dto.request.CarPartAnalogSearchDto;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.response.CarPartAnalogResponseDto;
 
 @Tag(name = "CarPartAnalog Api", description = "Api для работы с аналогами запчастей")
 public interface CarPartAnalogApi {
+
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
@@ -44,6 +47,37 @@ public interface CarPartAnalogApi {
     })
     @Operation(summary = "Получение аналога детали по id")
     ResponseEntity<CarPartAnalogResponseDto> findOneById(@Parameter(description = "id автомобиля") Long id);
+
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Успешный возврат всех аналогов деталей автомобиля",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = CarPartAnalogResponseDto.class)
+                            )
+                    }
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Неверный запрос",
+                    content = {
+                            @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = ErrorMessage.class)
+                            )
+                    }
+            )
+    })
+    @Operation(summary = "Получение всех аналогов деталей автомобилей")
+    ResponseEntity<Page<CarPartAnalogResponseDto>> findAll(
+            @Parameter(description = "Номер страницы")
+            @RequestParam(defaultValue = "0") @Min(value = 0)
+            Integer page,
+            @Parameter(description = "Размер страницы")
+            @RequestParam(defaultValue = "10") @Min(value = 1)
+            Integer size);
 
     @ApiResponses(value = {
             @ApiResponse(
@@ -75,17 +109,8 @@ public interface CarPartAnalogApi {
             @Parameter(description = "Размер страницы")
             @RequestParam(defaultValue = "10") @Min(value = 1)
             Integer pageSize,
-            @Parameter(description = "OEM детали аналога")
-            @RequestParam(required = false)
-            String analogOem,
-            @Parameter(description = "OEM детали оригинала")
-            @RequestParam(required = false)
-            String originalOem,
-            @Parameter(description = "Цена детали аналога")
-            @RequestParam(required = false)
-            String price,
-            @RequestParam(required = false)
-            @Parameter(description = "Поле для сортировки") String sortBy,
+            @Valid @RequestBody CarPartAnalogSearchDto searchDto,
+            @RequestParam(required = false) @Parameter(description = "Поле для сортировки") String sortBy,
             @RequestParam(required = false)
             @Parameter(
                     in = ParameterIn.QUERY,
@@ -100,7 +125,7 @@ public interface CarPartAnalogApi {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Успешный создание аналога детали автомобиля",
+                    description = "Успешное создание аналога детали автомобиля",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -125,7 +150,7 @@ public interface CarPartAnalogApi {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Успешный создание аналога детали автомобиля",
+                    description = "Успешное обновление аналога детали автомобиля",
                     content = {
                             @Content(
                                     mediaType = "application/json",

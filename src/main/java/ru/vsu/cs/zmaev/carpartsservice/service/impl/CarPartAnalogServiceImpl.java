@@ -2,6 +2,7 @@ package ru.vsu.cs.zmaev.carpartsservice.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.EntityPage;
 import ru.vsu.cs.zmaev.carpartsservice.domain.dto.criteria.CarPartAnalogCriteriaSearch;
@@ -27,6 +28,11 @@ public class CarPartAnalogServiceImpl implements CarPartAnalogService {
         return carPartAnalogCriteriaRepository
                 .findAllWithFilters(entityPage, carPartAnalogCriteriaSearch)
                 .map(carPartAnalogMapper::toDto);
+    }
+
+    @Override
+    public Page<CarPartAnalogResponseDto> findAll(Pageable pageable) {
+        return carPartAnalogRepository.findAll(pageable).map(carPartAnalogMapper::toDto);
     }
 
     @Override
